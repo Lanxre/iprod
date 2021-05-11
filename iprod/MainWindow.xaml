@@ -6,7 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:iprod"
         mc:Ignorable="d"
-        Title="MainWindow" Height="515" Width="365" ResizeMode="NoResize" WindowStyle="None" WindowStartupLocation="CenterScreen">
+        Title="MainWindow" Height="515" Width="365" ResizeMode="NoResize" WindowStyle="None" WindowStartupLocation="CenterScreen" Icon="Logo.png">
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
             <GradientStop Color="#FFF03E59" Offset="0"/>
@@ -72,36 +72,42 @@
             </Grid.ColumnDefinitions>
             <Image Source="Folder/Logo.png" Grid.ColumnSpan="2" ></Image>
         </Grid>
-        <Border MinWidth="100" Margin="10,26,10,22" Background="White" VerticalAlignment="Center" Padding="30" MaxWidth="300" CornerRadius="15" Grid.Row="2" Height="252">
+        <Border x:Name="Content" MinWidth="100" Margin="10,16,10,15" Background="White" VerticalAlignment="Center" Padding="30" MaxWidth="300" CornerRadius="15" Grid.Row="2" Height="359" Grid.RowSpan="2">
             <Border.Effect>
                 <DropShadowEffect BlurRadius="40" Color="LightPink" ShadowDepth="1"/>
             </Border.Effect>
-            <StackPanel>
+            <StackPanel x:Name="Content_1">
                 <TextBlock x:Name="SignLogin" Text="Войти" FontSize="35" FontWeight="Bold" Margin="0 0 0 20"/>
-                <TextBox x:Name="SignPass" materialDesign:HintAssist.Hint ="Логин" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-                <PasswordBox materialDesign:HintAssist.Hint ="Пароль" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
+                <TextBox x:Name="Mail" materialDesign:HintAssist.Hint ="Почта" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+
+                <PasswordBox x:Name="Password" materialDesign:HintAssist.Hint ="Пароль" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
+                <TextBox x:Name="Login" materialDesign:HintAssist.Hint ="Логин" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Visibility="Hidden"/>
 
                 <Grid Margin="0 20">
-                    <Button HorizontalAlignment="Left" Content="Вход" Background="LightPink" Width="240" Click="Button_Click"/>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="49*"/>
+                        <ColumnDefinition Width="11*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="buttonJoin" HorizontalAlignment="Left" Content="Вход" Background="LightPink" Width="240" Click="Button_Click" Margin="0,27,0,-27" Grid.ColumnSpan="2"/>
+                    <Button x:Name="buttonChoise" HorizontalAlignment="Center" Content="Не зарегестрированы?" Background="LightPink" Width="240" Click="Button_Click_1" Margin="0,-10,0,10" Grid.ColumnSpan="2" />
+                    <Button x:Name="buttonRegister"  HorizontalAlignment="Left" Content="Зарегестрироваться" Background="LightPink" Width="240" Click="ButtonRegister_Click" Margin="0,27,0,-27" Visibility="Hidden" Grid.ColumnSpan="2"/>
+                    <Button x:Name="guest_join" HorizontalAlignment="Center" Content="Войти как гость" Style="{StaticResource MaterialDesignOutlinedButton}" Width="240" Click="GuestJoin_Click" Margin="0,68,0,-64" Height="Auto" Grid.ColumnSpan="2" BorderThickness="1"/>
+
                 </Grid>
 
+
+
             </StackPanel>
 
-        </Border>
-        <Border Margin="33,291,28,15" 
-                Background="White" VerticalAlignment="Center" 
-                Padding="25" MaxWidth="290" CornerRadius="25" 
-                Grid.Row="2" Height="84" Grid.RowSpan="2" >
 
-            <Border.Effect>
-                <DropShadowEffect BlurRadius="20" Color="LightPink" ShadowDepth="1"/>
-            </Border.Effect>
-
-            <StackPanel>
-                <Button HorizontalAlignment="Center" Content="Не зарегестрированы?" Background="LightPink" Width="240" Click="Button_Click_1" />
-            </StackPanel>
 
         </Border>
+        <TextBlock Margin="142,45,145,15" Grid.Row="3" HorizontalAlignment="Center" Width="78">           
+            <Hyperlink NavigateUri="web\index.html" 
+                       RequestNavigate="Hyperlink_RequestNavigate">
+                 Посетить сайт
+            </Hyperlink>
+        </TextBlock>
 
     </Grid>
 </Window>

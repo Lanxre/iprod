@@ -136,8 +136,66 @@
     <Reference Include="MaterialDesignThemes.Wpf, Version=4.0.0.2422, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignThemes.4.0.0\lib\net452\MaterialDesignThemes.Wpf.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.6.0.0-preview.3.21201.4\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Data.Sqlite, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60">
+      <HintPath>..\packages\Microsoft.Data.Sqlite.Core.6.0.0-preview.3.21201.2\lib\netstandard2.0\Microsoft.Data.Sqlite.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="mscorlib" />
+    <Reference Include="SQLitePCLRaw.batteries_v2, Version=2.0.5.1114, Culture=neutral, PublicKeyToken=8226ea5df37bcae9">
+      <HintPath>..\packages\SQLitePCLRaw.bundle_e_sqlite3.2.0.5-pre20210119130047\lib\net461\SQLitePCLRaw.batteries_v2.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.core, Version=2.0.5.1114, Culture=neutral, PublicKeyToken=1488e028ca7ab535">
+      <HintPath>..\packages\SQLitePCLRaw.core.2.0.5-pre20210119130047\lib\netstandard2.0\SQLitePCLRaw.core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.nativelibrary, Version=2.0.5.1114, Culture=neutral, PublicKeyToken=502ed628492ab262">
+      <HintPath>..\packages\SQLitePCLRaw.bundle_e_sqlite3.2.0.5-pre20210119130047\lib\net461\SQLitePCLRaw.nativelibrary.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.provider.dynamic_cdecl, Version=2.0.5.1114, Culture=neutral, PublicKeyToken=b68184102cba0b3b">
+      <HintPath>..\packages\SQLitePCLRaw.provider.dynamic_cdecl.2.0.5-pre20210119130047\lib\netstandard2.0\SQLitePCLRaw.provider.dynamic_cdecl.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Data" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0-preview.3.21201.4\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Text.Encodings.Web, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51">
+      <HintPath>..\packages\System.Text.Encodings.Web.6.0.0-preview.3.21201.4\lib\net461\System.Text.Encodings.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51">
+      <HintPath>..\packages\System.Text.Json.6.0.0-preview.3.21201.4\lib\net461\System.Text.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -156,9 +214,47 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Window1.xaml.cs">
-      <DependentUpon>Window1.xaml</DependentUpon>
+    <Compile Include="..\Server\Entity\Employees.cs">
+      <Link>Properties\Employees.cs</Link>
     </Compile>
+    <Compile Include="..\Server\Entity\Help.cs">
+      <Link>Properties\Help.cs</Link>
+    </Compile>
+    <Compile Include="..\Server\Entity\Needys.cs">
+      <Link>Properties\Needys.cs</Link>
+    </Compile>
+    <Compile Include="..\Server\Entity\Service.cs">
+      <Link>Properties\Service.cs</Link>
+    </Compile>
+    <Compile Include="..\Server\Entity\Users.cs">
+      <Link>Properties\Users.cs</Link>
+    </Compile>
+    <Compile Include="..\Server\ServerMetaDats.cs">
+      <Link>Properties\ServerMetaDats.cs</Link>
+    </Compile>
+    <Compile Include="CustomMessgeBox.xaml.cs">
+      <DependentUpon>CustomMessgeBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataSender.cs" />
+    <Compile Include="EmployeeWindow.xaml.cs">
+      <DependentUpon>EmployeeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GuestWindow.xaml.cs">
+      <DependentUpon>GuestWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserWindow.xaml.cs">
+      <DependentUpon>UserWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Validations.cs" />
+    <Page Include="CustomMessgeBox.xaml" />
+    <Page Include="EmployeeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GuestWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -171,7 +267,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Window1.xaml">
+    <Page Include="UserWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -216,7 +312,35 @@
     <Resource Include="Folder\2_1.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Folder\exit.png" />
     <Resource Include="Folder\Logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Folder\3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Folder\3_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Folder\menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Folder\mainState.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Folder\Active_menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Folder\exit1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Folder\home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Folder\info.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets')" />
@@ -225,5 +349,7 @@
       <ErrorText>Данный проект ссылается на пакеты NuGet, отсутствующие на этом компьютере. Используйте восстановление пакетов NuGet, чтобы скачать их.  Дополнительную информацию см. по адресу: http://go.microsoft.com/fwlink/?LinkID=322105. Отсутствует следующий файл: {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets'))" />
+    <Error Condition="!Exists('..\packages\SQLitePCLRaw.lib.e_sqlite3.2.0.5-pre20210119130047\build\net461\SQLitePCLRaw.lib.e_sqlite3.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SQLitePCLRaw.lib.e_sqlite3.2.0.5-pre20210119130047\build\net461\SQLitePCLRaw.lib.e_sqlite3.targets'))" />
   </Target>
+  <Import Project="..\packages\SQLitePCLRaw.lib.e_sqlite3.2.0.5-pre20210119130047\build\net461\SQLitePCLRaw.lib.e_sqlite3.targets" Condition="Exists('..\packages\SQLitePCLRaw.lib.e_sqlite3.2.0.5-pre20210119130047\build\net461\SQLitePCLRaw.lib.e_sqlite3.targets')" />
 </Project>
