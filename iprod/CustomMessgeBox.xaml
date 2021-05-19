@@ -1,0 +1,46 @@
+﻿<Window x:Class="iprod.CustomMessgeBox"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:iprod"
+        mc:Ignorable="d"
+        Title="CustomMessgeBox" Height="159.582" Width="497" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="Logo.png">
+
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FFF03E59" Offset="0"/>
+            <GradientStop Color="#FFD8D2D8" Offset="1"/>
+            <GradientStop Color="LightPink" Offset="0.577"/>
+        </LinearGradientBrush>
+    </Window.Background>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"></RowDefinition>
+            <RowDefinition Height="110"></RowDefinition>
+            <RowDefinition Height="35"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" x:Name="header" Background="Transparent" Width="492" MouseDown="Header_OnMouseDown">
+            <Polygon Fill="White" Opacity="0.5"
+                     Points="0,0,
+                 30,15,
+                 450,15
+                 485,0" />
+        </Grid>
+        <Grid Grid.Row="1" HorizontalAlignment="Center">
+            <TextBlock x:Name="Info" Text=" " FontSize="15" FontWeight="Bold" Margin="0,10,0,71"/>
+            <Button x:Name="buttonAttempt" HorizontalAlignment="Left" Content="Принять" Background="LightPink" Width="240" Click="Button_Attempt" Margin="0,60,0,18"/>
+        </Grid>
+        <Grid Grid.Row="2" x:Name="footer"  HorizontalAlignment="Center">
+            <Polygon Fill="White" Opacity="0.5"
+                     Points="450,0,
+                 485,15,
+                 0,15
+                 30,0" />
+
+        </Grid>
+    </Grid>
+
+</Window>
