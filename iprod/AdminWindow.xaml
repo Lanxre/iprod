@@ -1,4 +1,4 @@
-﻿<Window x:Class="iprod.EmployeeWindow"
+﻿<Window x:Class="iprod.AdminWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -202,12 +202,171 @@
 
             </Grid>
 
+            <!--// DataGrid Add Users //-->
+            <Grid x:Name="add_users" 
+                  Visibility="Visible">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="65"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+
+                    <RowDefinition Height="200"/>
+                    <RowDefinition Height="*" />
+
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0"
+                      Grid.Column="1">
+
+                    <Grid.RowDefinitions>
+
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="*" />
+
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Background="LightPink" 
+                                Grid.Row="0" 
+                                MouseLeftButtonDown="UIElement_OnMouseLeftButtonDown" >
+
+                        <TextBlock Text="Добавление нового сотрудника"
+                                   HorizontalAlignment="Center"
+                                   FontSize="35"
+                                   FontWeight="Black"
+                                   Foreground="White"
+                                   ></TextBlock>
+
+                    </StackPanel>
+
+                    <Grid Background="White" Grid.Row="1">
+
+                        <Grid.RowDefinitions>
+
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="80"/>
+                            <RowDefinition Height="*"/>
+
+                        </Grid.RowDefinitions>
+
+
+
+                        <StackPanel Grid.Row="0" 
+                                    >
+
+                            <TextBlock HorizontalAlignment="Center" 
+                                       Text="Заполните данные"
+                                       FontWeight="Bold"
+                                       FontSize="25" Margin="125,0,147,0">
+
+                            </TextBlock>
+
+                        </StackPanel>
+
+
+
+                        <ComboBox
+                            x:Name="roles"
+                                Margin="0,0,583,30" Grid.Row="1" Height="50" 
+                                />
+
+                        <TextBlock
+                                       Text=""
+                                       Width="150"
+                                       FontWeight="Bold"
+                                       FontSize="25" Margin="177,25,408,25" Grid.Row="1"/>
+
+                        <TextBox x:Name="add_login" materialDesign:HintAssist.Hint ="Логин" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="166,0,408,30" Grid.Row="1"/>
+                        <TextBox x:Name="add_mail" materialDesign:HintAssist.Hint ="Почта" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="366,0,214,30" Grid.Row="1"/>
+                        <PasswordBox x:Name="add_pass" materialDesign:HintAssist.Hint ="Пароль" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" Margin="573,0,0,30" Grid.Row="1"/>
+                        
 
 
 
 
 
-            <!--// DataGrid H //-->
+
+
+                        <StackPanel Grid.Row="2" 
+                                    >
+                            <Button HorizontalAlignment="Center" 
+                                Width="130"
+                                Background="Pink"
+                                Content="Добавить"
+                                Click = "Add_Users"
+                                Style="{StaticResource MaterialDesignRaisedDarkButton}" Margin="302,0,303,0"
+                                />
+
+                        </StackPanel>
+                       
+
+                    </Grid>
+
+
+
+                </Grid>
+
+                <DataGrid 
+                          x:Name="data_roles"
+                          Grid.Column="1"
+                          Grid.Row="1"
+                          Visibility="Visible"
+                          AutoGenerateColumns="False"
+                          IsReadOnly="True"
+                          SelectionMode="Single" 
+                          SelectionUnit="FullRow"
+                          CanUserResizeColumns="False"
+                          CanUserResizeRows="False"
+                          >
+
+                    <DataGrid.Resources>
+
+                        <Style TargetType="{x:Type DataGridColumnHeader }">
+                            <Setter Property="Height" Value="40"/>
+                            <Setter Property="Background" Value="#ffb6c1"/>
+                            <Setter Property="BorderBrush" Value="Transparent"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="FontFamily" Value="Fonts/Roboto-Light.ttf #Roboto"/>
+                            <Setter Property="FontSize" Value="15"/>
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        </Style>
+
+                    </DataGrid.Resources>
+
+                    <DataGrid.Columns>
+
+                        <DataGridTextColumn Header="Id" Binding="{Binding Path= UserRoleId }" Width="*"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Логин" Binding="{Binding Path= UserLogin}" Width="*"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Почта" Binding="{Binding Path= UserMail}" Width="*"></DataGridTextColumn>
+
+                    </DataGrid.Columns>
+
+                </DataGrid>
+
+
+                <Button        
+                                HorizontalAlignment="Center"
+                                Grid.Column="1"
+                                Grid.Row="1"
+                                Width="130"
+                                Background="Pink"
+                                Content="Обновить"
+                                Click = "Reload_Users"
+                                Visibility="Visible"
+                        
+                                Style="{StaticResource MaterialDesignRaisedDarkButton}" Margin="302,358,303,10"
+                                />
+
+            </Grid>
+
+
+
+
+
+
+            <!--// DataGrid Search Needy //-->
             <Grid x:Name="search_needy" 
                   Visibility="Hidden">
 
@@ -271,9 +430,9 @@
                                        Text="Для вас"
                                        FontWeight="Bold"
                                        FontSize="25" Margin="125,0,147,0">
-                                
+
                             </TextBlock>
-                            
+
                         </StackPanel>
 
                         <StackPanel Grid.Row="0" 
@@ -288,7 +447,7 @@
                             </TextBlock>
 
                         </StackPanel>
-                        
+
                         <StackPanel Grid.Row="1" 
                                     Grid.Column="0"
                                     >
@@ -381,7 +540,7 @@
                     </DataGrid.Columns>
 
                 </DataGrid>
-                 
+
                 <DataGrid 
                     x:Name="datagrid_search_needy_curator"
                           Grid.Column="1"
@@ -445,18 +604,6 @@
 
 
             </Grid>
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -752,6 +899,7 @@
                     </Button.Background>
 
                 </Button>
+
 
 
             </Grid>
@@ -1057,7 +1205,37 @@
 
                         </ListViewItem>
 
+                        <!--// Add Users //-->
 
+                        <ListViewItem HorizontalAlignment="Left"
+                                      Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter"
+                                      >
+
+                            <StackPanel Orientation="Horizontal"
+                                        Width="230"
+                                        MouseLeftButtonDown ="AddUsers_MouseLeftButtonDown">
+
+                                <Image Source="Folder/3.png"
+                                       Stretch="None"
+                                       Margin="12,0,0,0"/>
+
+                                <TextBlock Text="Добавить польззователя"
+                                           Margin="25,0,0,0"
+                                           Style="{StaticResource font_style}" Width="132"/>
+
+                            </StackPanel>
+
+                            <!--// Tooltip //-->
+
+                            <ListViewItem.ToolTip>
+
+                                <ToolTip x:Name="tt_addUser"
+                                         Content="Добавить польззователя"
+                                         Style="{StaticResource tt_style}"/>
+
+                            </ListViewItem.ToolTip>
+
+                        </ListViewItem>
 
 
 

@@ -223,6 +223,9 @@
     <Compile Include="..\Server\Entity\Needys.cs">
       <Link>Properties\Needys.cs</Link>
     </Compile>
+    <Compile Include="..\Server\Entity\Role.cs">
+      <Link>Properties\Role.cs</Link>
+    </Compile>
     <Compile Include="..\Server\Entity\Service.cs">
       <Link>Properties\Service.cs</Link>
     </Compile>
@@ -231,6 +234,9 @@
     </Compile>
     <Compile Include="..\Server\ServerMetaDats.cs">
       <Link>Properties\ServerMetaDats.cs</Link>
+    </Compile>
+    <Compile Include="AdminWindow.xaml.cs">
+      <DependentUpon>AdminWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="CustomMessgeBox.xaml.cs">
       <DependentUpon>CustomMessgeBox.xaml</DependentUpon>
@@ -246,6 +252,10 @@
       <DependentUpon>UserWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Validations.cs" />
+    <Page Include="AdminWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CustomMessgeBox.xaml" />
     <Page Include="EmployeeWindow.xaml">
       <SubType>Designer</SubType>

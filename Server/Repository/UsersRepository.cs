@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text.Json;
 using Microsoft.Data.Sqlite;
 using Server.Entity;
@@ -22,7 +23,7 @@ namespace Server.Repository
         
         public bool SqlMailChek(string mail)
         {
-            var sqlExpression = "SELECT user_mail FROM users where user_mail = 'asdfg@gmail.com'";
+            const string sqlExpression = "SELECT user_mail FROM users where user_mail = 'asdfg@gmail.com'";
             using var connection = new SqliteConnection(_connectionString);
             connection.Open();
             var command = new SqliteCommand(sqlExpression, connection);
@@ -50,7 +51,7 @@ namespace Server.Repository
 
         public string ExistUser(Users user)
         {
-            string sqlExpression = "SELECT * FROM users where user_mail = @mail and user_password = @pass";
+            const string sqlExpression = "SELECT * FROM users where user_mail = @mail and user_password = @pass";
             using var connection = new SqliteConnection(_connectionString);
             connection.Open();
             
@@ -82,6 +83,33 @@ namespace Server.Repository
 
             Console.WriteLine(JsonSerializer.Serialize(userSend));
             return JsonSerializer.Serialize(userSend);
+        }
+
+        public string GetAll()
+        {
+            var users = new List<Users>();
+            const string sqlExpression = "SELECT * FROM users";
+            using var connection = new SqliteConnection(_connectionString);
+            connection.Open();
+            var command = new SqliteCommand(sqlExpression, connection);
+            using var reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                var id = reader.GetInt32(0);
+                var name = reader.GetString(1);
+                var mail = reader.GetString(2);
+                var pass = reader.GetString(3);
+                
+                users.Add(new Users()
+                {
+                   UserRoleId = id,
+                   UserLogin = name,
+                   UserMail = mail,
+                   UserPassword = pass
+                });
+            }
+            return JsonSerializer.Serialize(users);
+            
         }
     }
 }

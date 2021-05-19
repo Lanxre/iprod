@@ -27,7 +27,7 @@ namespace Server
                 _tcpListener.Start();
                 _metaDats = new ServerMetaDats();
                 _manager = new ManagerRepository(new UsersRepository(), new ServiceRepository(),
-                    new EmploeesRepository(), new NeedysRepository(), new HelpRepository() );
+                    new EmploeesRepository(), new NeedysRepository(), new HelpRepository(), new RoleRepository());
                 ConstString.Sendler = "Server running";
                 Console.WriteLine("Сервер запущен. Ожидание подключений...");
                 
@@ -129,8 +129,16 @@ namespace Server
             switch (_metaDats.TypeClassSend)
             {
                 case "Users":
-                    var user = JsonSerializer.Deserialize<Users>(data);
-                    ConstString.Sendler = _manager.Users.ExistUser(user);
+                    switch (_metaDats.GetType)
+                    {
+                        case 1:
+                            var user = JsonSerializer.Deserialize<Users>(data);
+                            ConstString.Sendler = _manager.Users.ExistUser(user);
+                            break;
+                        case 2:
+                            ConstString.Sendler = _manager.Users.GetAll();
+                            break;
+                    }
                     break;
                 case "Service":
                     ConstString.Sendler = _manager.Service.GetAll();
@@ -161,6 +169,13 @@ namespace Server
                             break;
                     }
                     break;
+                case "Roles":
+                    ConstString.Sendler = _manager.Roles.GetAll();
+                    Console.WriteLine("Роли -> " +  ConstString.Sendler);
+                    break;
+                
+                          
+                        
             }
         }
 

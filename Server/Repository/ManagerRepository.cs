@@ -13,15 +13,18 @@ namespace Server.Repository
         public NeedysRepository Needys { get; }
         
         public HelpRepository Help { get; }
+        
+        public RoleRepository Roles { get; }
 
         public ManagerRepository(UsersRepository usersRepository, ServiceRepository serviceRepository, 
-            EmploeesRepository emploees, NeedysRepository needys, HelpRepository help)
+            EmploeesRepository emploees, NeedysRepository needys, HelpRepository help, RoleRepository roles)
         {
             Users = usersRepository;
             Service = serviceRepository;
             Emploees = emploees;
             Needys = needys;
             Help = help;
+            Roles = roles;
         }
 
        

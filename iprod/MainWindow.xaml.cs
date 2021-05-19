@@ -52,7 +52,8 @@ namespace iprod
             {
                 TypeClassSend = "Users",
                 SendMessage = true,
-                GetItem = true
+                GetItem = true,
+                GetType = 1
             };
             var userSend = new Users()
             {
@@ -66,6 +67,23 @@ namespace iprod
             switch (userGet?.UserRoleId)
             {
                 case 1:
+                    var settings2 = new ServerMetaDats()
+                    {
+                        TypeClassSend = "Employees",
+                        SendMessage = true,
+                        GetItem = true,
+                        GetType = 2
+
+                    };
+                    var admin = string.Empty;
+
+                    DataSender.OperationDataSend(JsonSerializer.Serialize(settings2));
+                    DataSender.OperationDataSend(JsonSerializer.Serialize(admin));
+
+                    var adm = (JsonSerializer.Deserialize<List<Employees>>(DataSender.Message))
+                        .First(x => x.EmployeesMail == userGet.UserMail);
+                    var adminWindow = new AdminWindow(userGet,adm);
+                    adminWindow.Show();
                     Close();
                     break; 
                 case 2:

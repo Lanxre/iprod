@@ -10,5 +10,7 @@ namespace Server.Interface
 
         public string ExistUser(Users user);
 
+        public string GetAll();
+
     }
 }

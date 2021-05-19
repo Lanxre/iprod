@@ -2,6 +2,6 @@
 {
     public interface IRoleRepository
     {
-        
+        public string GetAll();
     }
 }
