@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
 using System.Windows;
 using System.Windows.Input;
+using LiveCharts;
 using Server;
 using Server.Entity;
+using LiveCharts.Wpf;
 
 namespace iprod
 {
@@ -38,6 +41,7 @@ namespace iprod
             web_site.Visibility = Visibility.Hidden;
             service_add.Visibility = Visibility.Hidden;
             add_users.Visibility = Visibility.Hidden;
+            stats.Visibility = Visibility.Hidden;
             //
             search_needy.Visibility = Visibility.Visible;
 
@@ -55,6 +59,7 @@ namespace iprod
                 tt_Подпись_на_услугу.Visibility = Visibility.Collapsed;
                 tt_Проверка_нуждающихся.Visibility = Visibility.Collapsed;
                 tt_addUser.Visibility = Visibility.Collapsed;
+                tt_stats.Visibility = Visibility.Collapsed;
             }
             else
             {
@@ -65,6 +70,7 @@ namespace iprod
                 tt_Подпись_на_услугу.Visibility = Visibility.Visible;
                 tt_Проверка_нуждающихся.Visibility = Visibility.Visible;
                 tt_addUser.Visibility = Visibility.Visible;
+                tt_stats.Visibility = Visibility.Visible;
             }
 
         }
@@ -103,6 +109,7 @@ namespace iprod
             service_add.Visibility = Visibility.Hidden;
             search_needy.Visibility = Visibility.Hidden;
             add_users.Visibility = Visibility.Hidden;
+            stats.Visibility = Visibility.Hidden;
         }
 
         private void AddUsers_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -114,6 +121,7 @@ namespace iprod
             service_add.Visibility = Visibility.Hidden;
             search_needy.Visibility = Visibility.Hidden;
             data_service.Visibility = Visibility.Hidden;
+            stats.Visibility = Visibility.Hidden;
             //
             add_users.Visibility = Visibility.Visible;
             
@@ -143,6 +151,7 @@ namespace iprod
             service_add.Visibility = Visibility.Hidden;
             search_needy.Visibility = Visibility.Hidden;
             add_users.Visibility = Visibility.Hidden;
+            stats.Visibility = Visibility.Hidden;
             //
             data_service.Visibility = Visibility.Visible;
             var settings = new ServerMetaDats()
@@ -167,6 +176,7 @@ namespace iprod
             service_add.Visibility = Visibility.Hidden;
             search_needy.Visibility = Visibility.Hidden;
             add_users.Visibility = Visibility.Hidden;
+            stats.Visibility = Visibility.Hidden;
             //
             web_site.Navigate(new Uri(AppDomain.CurrentDomain.BaseDirectory + "web/info.html"));
             web_site.Visibility = Visibility.Visible;
@@ -184,6 +194,7 @@ namespace iprod
             web_site.Visibility = Visibility.Hidden;
             search_needy.Visibility = Visibility.Hidden;
             add_users.Visibility = Visibility.Hidden;
+            stats.Visibility = Visibility.Hidden;
             //
             service_add.Visibility = Visibility.Visible;
 
@@ -431,8 +442,56 @@ namespace iprod
             data_roles.ItemsSource = JsonSerializer.Deserialize<List<Users>>(DataSender.Message);
         }
 
+        private void Stats_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            BG.Visibility = Visibility.Hidden;
+            data_service.Visibility = Visibility.Hidden;
+            grid_h.Visibility = Visibility.Hidden;
+            CloseBtn.Visibility = Visibility.Hidden;
+            web_site.Visibility = Visibility.Hidden;
+            search_needy.Visibility = Visibility.Hidden;
+            add_users.Visibility = Visibility.Hidden;
+            service_add.Visibility = Visibility.Hidden;
+            //
+            stats.Visibility = Visibility.Visible;
+            RemoveChart(chart_stats.Series);
+            var settings = new ServerMetaDats()
+            {
+                TypeClassSend = "Get",
+                SendMessage = true,
+                GetItem = true,
+                GetType = 1
+            };
+            DataSender.OperationDataSend(JsonSerializer.Serialize(settings));
+            DataSender.OperationDataSend(JsonSerializer.Serialize(string.Empty));
 
-
+            var dict = JsonSerializer.Deserialize<Dictionary<string, int>>(DataSender.Message);
+            
+            var psc = new SeriesCollection();
+            
+            foreach (var keyValuePair in dict)
+            {
+                psc.Add(new PieSeries()
+                {
+                    Title = keyValuePair.Key,
+                    Values = new ChartValues<int>{keyValuePair.Value}
+                });
+            }
+            
+            foreach (PieSeries ps in psc)
+            {
+                chart_stats.Series.Add(ps);
+            }
+            
+        }
+        
+        private static void RemoveChart(IList list)
+        {
+            while (list.Count > 0)
+            {
+                list.RemoveAt(list.Count - 1);
+            }
+        }
 
         private void UIElement_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {

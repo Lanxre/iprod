@@ -173,6 +173,15 @@ namespace Server
                     ConstString.Sendler = _manager.Roles.GetAll();
                     Console.WriteLine("Роли -> " +  ConstString.Sendler);
                     break;
+                case "Get":
+                    switch (_metaDats.GetType)
+                    {
+                        case 1:
+                            ConstString.Sendler = _manager.GetStats();
+                            Console.WriteLine("Статистика -> " +  ConstString.Sendler);
+                            break;
+                    }
+                    break;
                 
                           
                         
