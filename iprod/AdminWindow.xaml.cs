@@ -202,7 +202,8 @@ namespace iprod
             {
                 TypeClassSend = "Employees",
                 SendMessage = true,
-                GetItem = true
+                GetItem = true,
+                GetType = 1
             };
             var curator = string.Empty;
 
